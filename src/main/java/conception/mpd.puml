@@ -1,0 +1,103 @@
+@startuml modèle physique de données traitement-data
+
+        hide circle
+
+
+        entity "Movie" as movie {
+                *movie_id : int <<generated>>
+                --
+                name : varchar(100)
+                url : varchar(150)
+                plot : text
+                imdb_id : string
+                language : string
+                release_year : string
+                shooting_location_id : int <<FK>>
+        }
+
+        entity "Director" as direct {
+                *director_id : int <<generated>>
+                --
+                identity : varchar(100) 
+                url : varchar(150)
+                imdb_id : varchar(9)
+        }
+
+
+        entity "Actor" as actor {
+                *actor_id : int <<generated>>
+                --
+                identity : varchar(100) 
+                url : varchar(150)
+                imdb_id : varchar(9)
+                birthdate : Date
+                birthplace : varchar(150)
+        }
+
+        entity "Role" as role {
+                *role_id : int <<generated>>
+                --
+                character_name : varchar(90)
+        }
+
+        entity "Genre" as genre {
+                *genre8id : int <<generated>>
+                --
+                genre_name : varchar(90)
+        }
+
+        entity "Shooting_location" as shooting_loc {
+                *shooting_location_id : int <<generated>>
+                --
+                city : varchar(90) 
+                state : varchar(100)
+                country : varchar(60)
+        }
+        
+        
+        entity "role_actor" as role_act {
+                *role_id : int <<FK>>
+                --
+                actor_id : int <<FK>>
+        }
+
+
+        entity "movie_actor" as mov_act {
+                *movie_id : int <<FK>>
+                --
+                actor_id : int <<FK>>
+        }
+
+        entity "movie_role" as mov_role {
+                *movie_id : int <<FK>>
+                --
+                role : int <<FK>>
+        }
+
+        entity "movie_director" as mov_direct {
+                *movie_id : int <<FK>>
+                --
+                director_id : int <<FK>>
+        }
+
+        entity "movie_genre" as mov_genre {
+                *movie_id : int <<FK>>
+                --
+                director_id : int <<FK>>
+        }
+        
+
+        movie -- mov_act
+        mov_act -- actor
+        actor -- role_act
+        role_act -- role
+        movie -- mov_role
+        mov_role -- role
+        movie -- mov_direct
+        mov_direct -- direct
+        movie -- mov_genre
+        mov_genre -- genre
+        movie -- shooting_loc
+
+
+@enduml
