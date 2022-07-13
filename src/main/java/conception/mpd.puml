@@ -3,7 +3,7 @@
         hide circle
 
 
-        entity "Movie" as movie {
+        bo "Movie" as movie {
                 *movie_id : int <<generated>>
                 --
                 name : varchar(100)
@@ -15,7 +15,7 @@
                 shooting_location_id : int <<FK>>
         }
 
-        entity "Director" as direct {
+        bo "Director" as direct {
                 *director_id : int <<generated>>
                 --
                 identity : varchar(100) 
@@ -24,7 +24,7 @@
         }
 
 
-        entity "Actor" as actor {
+        bo "Actor" as actor {
                 *actor_id : int <<generated>>
                 --
                 identity : varchar(100) 
@@ -34,19 +34,19 @@
                 birthplace : varchar(150)
         }
 
-        entity "Role" as role {
+        bo "Role" as role {
                 *role_id : int <<generated>>
                 --
                 character_name : varchar(90)
         }
 
-        entity "Genre" as genre {
+        bo "Genre" as genre {
                 *genre8id : int <<generated>>
                 --
                 genre_name : varchar(90)
         }
 
-        entity "Shooting_location" as shooting_loc {
+        bo "Shooting_location" as shooting_loc {
                 *shooting_location_id : int <<generated>>
                 --
                 city : varchar(90) 
@@ -55,32 +55,32 @@
         }
         
         
-        entity "role_actor" as role_act {
+        bo "role_actor" as role_act {
                 *role_id : int <<FK>>
                 --
                 actor_id : int <<FK>>
         }
 
 
-        entity "movie_actor" as mov_act {
+        bo "movie_actor" as mov_act {
                 *movie_id : int <<FK>>
                 --
                 actor_id : int <<FK>>
         }
 
-        entity "movie_role" as mov_role {
+        bo "movie_role" as mov_role {
                 *movie_id : int <<FK>>
                 --
                 role : int <<FK>>
         }
 
-        entity "movie_director" as mov_direct {
+        bo "movie_director" as mov_direct {
                 *movie_id : int <<FK>>
                 --
                 director_id : int <<FK>>
         }
 
-        entity "movie_genre" as mov_genre {
+        bo "movie_genre" as mov_genre {
                 *movie_id : int <<FK>>
                 --
                 director_id : int <<FK>>
