@@ -5,7 +5,6 @@ import bo.ShootingLocation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 public class ShootingLocationDAO implements DAO<ShootingLocation>{
 
@@ -21,21 +20,6 @@ public class ShootingLocationDAO implements DAO<ShootingLocation>{
         } catch (Exception e) {
             throw new DALException("Erreur lors de la création du film", e);
         }
-    }
-
-    @Override
-    public void update(ShootingLocation object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(ShootingLocation object) throws DALException {
-
-    }
-
-    @Override
-    public List<ShootingLocation> selectAll() throws DALException {
-        return null;
     }
 
     @Override

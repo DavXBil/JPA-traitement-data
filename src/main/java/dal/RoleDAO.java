@@ -1,12 +1,11 @@
 package dal;
 
 import bll.ConnectionManager;
-import bo.Genre;
 import bo.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
+import javax.persistence.TypedQuery;
 
 public class RoleDAO implements DAO<Role>{
 
@@ -25,23 +24,15 @@ public class RoleDAO implements DAO<Role>{
     }
 
     @Override
-    public void update(Role object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(Role object) throws DALException {
-
-    }
-
-    @Override
-    public List<Role> selectAll() throws DALException {
-        return null;
-    }
-
-    @Override
     public Role selectById(long id) throws DALException {
         return null;
+    }
+
+    public Role selectById(String characterName) throws DALException {
+
+        TypedQuery<Role> query = em.createQuery("select r from Role r where r.characterName = :name", Role.class);
+        query.setParameter("name", characterName);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 
 }

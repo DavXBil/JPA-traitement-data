@@ -2,7 +2,6 @@ package bo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -10,7 +9,7 @@ import java.util.Set;
 public class Actor extends Person{
 
     @Column(name="imdb_id")
-    private int imdbId;
+    private String imdbId;
 
     @Column(name="birthdate")
     private LocalDate birthdate;
@@ -18,7 +17,7 @@ public class Actor extends Person{
     @Column(name="birthplace")
     private String birthplace;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "Actor_roles",
             joinColumns = @JoinColumn(name = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
@@ -27,7 +26,7 @@ public class Actor extends Person{
     public Actor() {
     }
 
-    public Actor(String identity, String url, int imdbId, LocalDate birthdate, String birthplace) {
+    public Actor(String identity, String url, String imdbId, LocalDate birthdate, String birthplace) {
         super(identity, url);
         this.imdbId = imdbId;
         this.birthdate = birthdate;
@@ -42,11 +41,11 @@ public class Actor extends Person{
         this.roles = roles;
     }
 
-    public int getImdbId() {
+    public String getImdbId() {
         return imdbId;
     }
 
-    public void setImdbId(int imdbId) {
+    public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
     }
 
@@ -55,6 +54,7 @@ public class Actor extends Person{
     }
 
     public void setBirthdate(LocalDate birthdate) {
+        System.out.println(birthdate);
         this.birthdate = birthdate;
     }
 

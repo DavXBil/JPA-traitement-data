@@ -5,7 +5,7 @@ import bo.Actor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
+import javax.persistence.TypedQuery;
 
 public class ActorDAO implements DAO<Actor> {
 
@@ -27,23 +27,14 @@ public class ActorDAO implements DAO<Actor> {
     }
 
     @Override
-    public void update(Actor object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(Actor object) throws DALException {
-
-    }
-
-    @Override
-    public List<Actor> selectAll() throws DALException {
-        return null;
-    }
-
-    @Override
     public Actor selectById(long id) throws DALException {
         return null;
+    }
+
+    public Actor selectByIdentity(String identity) {
+        TypedQuery<Actor> query = em.createQuery("select r from Actor r where r.identity = :identity", Actor.class);
+        query.setParameter("identity", identity);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 
 }

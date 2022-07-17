@@ -5,7 +5,6 @@ import bo.Director;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 public class DirectorDAO implements DAO<Director>{
 
@@ -23,20 +22,6 @@ public class DirectorDAO implements DAO<Director>{
         }
     }
 
-    @Override
-    public void update(Director object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(Director object) throws DALException {
-
-    }
-
-    @Override
-    public List<Director> selectAll() throws DALException {
-        return null;
-    }
 
     @Override
     public Director selectById(long id) throws DALException {

@@ -5,7 +5,7 @@ import bo.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
+import javax.persistence.TypedQuery;
 
 public class MovieDAO implements DAO<Movie>{
 
@@ -26,22 +26,13 @@ public class MovieDAO implements DAO<Movie>{
     }
 
     @Override
-    public void update(Movie object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(Movie object) throws DALException {
-
-    }
-
-    @Override
-    public List<Movie> selectAll() throws DALException {
-        return null;
-    }
-
-    @Override
     public Movie selectById(long id) throws DALException {
         return null;
+    }
+
+    public Movie selectByImdbId(String imdbId) {
+        TypedQuery<Movie> query = em.createQuery("select m from Movie m where m.imdbId = :imdbId", Movie.class);
+        query.setParameter("imdbId", imdbId);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 }

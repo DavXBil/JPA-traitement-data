@@ -13,6 +13,17 @@ public class Role {
     @Column(name="character_name")
     private String characterName;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 
     public Role() {
     }

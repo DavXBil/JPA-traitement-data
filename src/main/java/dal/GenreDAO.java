@@ -5,7 +5,6 @@ import bo.Genre;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 public class GenreDAO implements DAO<Genre>{
 
@@ -21,21 +20,6 @@ public class GenreDAO implements DAO<Genre>{
         } catch (Exception e) {
             throw new DALException("Erreur lors de la création du film", e);
         }
-    }
-
-    @Override
-    public void update(Genre object) throws DALException {
-
-    }
-
-    @Override
-    public void delete(Genre object) throws DALException {
-
-    }
-
-    @Override
-    public List<Genre> selectAll() throws DALException {
-        return null;
     }
 
     @Override
