@@ -7,6 +7,8 @@ import dal.DALException;
 import dal.DAOFactory;
 import dal.MovieDAO;
 
+import java.util.List;
+
 public class MovieManager {
 
     private static volatile MovieManager instance = null;
@@ -37,6 +39,12 @@ public class MovieManager {
     public Movie getElementByImdbId(String id) {
         return movieDAO.selectByImdbId(id);
     }
+
+    public List<Movie> getElementByActor(String name) {
+        return movieDAO.selectByActor(name);
+    }
+
+
 
 
 

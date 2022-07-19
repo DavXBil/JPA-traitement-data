@@ -185,4 +185,24 @@ public class Movie {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Movie{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", plot='").append(plot).append('\'');
+        sb.append(", imdbId='").append(imdbId).append('\'');
+        sb.append(", language='").append(language).append('\'');
+        sb.append(", releaseYear='").append(releaseYear).append('\'');
+        sb.append(", roles=").append(roles);
+        sb.append(", directors=").append(directors);
+        sb.append(", genres=").append(genres);
+        sb.append(", shootingLocation=").append(shootingLocation);
+        sb.append(", country=").append(country);
+        sb.append(", actors=").append(actors);
+        sb.append(", mainActors=").append(mainActors);
+        sb.append('}');
+        return sb.toString();
+    }
 }

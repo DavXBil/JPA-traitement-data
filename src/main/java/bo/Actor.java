@@ -12,16 +12,17 @@ public class Actor extends Person{
     @Column(name="imdb_id")
     private String imdbId;
 
-    /*Birthdate of actor*/
+
     @Column(name="birthdate")
     private LocalDate birthdate;
 
-    /*Birthplace of actor*/
+
     @Column(name="birthplace")
     private String birthplace;
 
     @ManyToMany(mappedBy = "actors", cascade = CascadeType.MERGE)
     private Set<Movie> movies = new LinkedHashSet<>();
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "Actor_roles",

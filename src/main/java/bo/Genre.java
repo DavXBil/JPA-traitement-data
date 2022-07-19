@@ -30,4 +30,12 @@ public class Genre {
 
     public Genre() {
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Genre{");
+        sb.append("name='").append(name).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

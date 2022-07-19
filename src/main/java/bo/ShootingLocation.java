@@ -52,4 +52,14 @@ public class ShootingLocation {
 
     public ShootingLocation() {
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ShootingLocation{");
+        sb.append("city='").append(city).append('\'');
+        sb.append(", stateDepartment='").append(stateDepartment).append('\'');
+        sb.append(", country='").append(country).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

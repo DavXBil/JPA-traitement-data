@@ -43,4 +43,13 @@ public class Country {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Country{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", url='").append(url).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

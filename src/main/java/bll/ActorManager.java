@@ -5,6 +5,8 @@ import dal.ActorDAO;
 import dal.DALException;
 import dal.DAOFactory;
 
+import java.util.List;
+
 public class ActorManager {
 
     private static volatile ActorManager instance = null;
@@ -40,6 +42,10 @@ public class ActorManager {
     }
     public Actor getElementByIdentity(String id) {
         return actorDAO.selectByIdentity(id);
+    }
+
+    public List<Actor> getCastByFilm(String movie) {
+        return actorDAO.selectCastByMovie(movie);
     }
 
 

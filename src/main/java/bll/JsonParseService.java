@@ -25,7 +25,15 @@ public class JsonParseService {
 
     public static Actor parseActorObject(JSONObject a) throws DALException {
 
+        JSONArray actorRoles = (JSONArray) a.get("roles");
 
+        Set<Role> roles = new HashSet<Role>();
+
+        if(actorRoles != null) {
+            for (Object role : actorRoles ) {
+                roles.add(parseRolesArray((JSONObject) role));
+            }
+        }
 
         JSONObject actorBirth = (JSONObject) a.get("naissance");
 
@@ -35,10 +43,6 @@ public class JsonParseService {
         if (actor == null) {
 
             Actor newActor = new Actor();
-
-            JSONArray actorRoles = (JSONArray) a.get("roles");
-
-            Set<Role> roles = new HashSet<Role>();
 
             if(actorRoles != null) {
                 for (Object role : actorRoles ) {
@@ -282,50 +286,7 @@ public class JsonParseService {
 
         return shootLoc;
     }
-
-   /* public static Actor parseMovieActorObject(JSONObject mA) throws DALException {
-
-        Actor actor = actorManager.getElementByIdentity((String) mA.get("identite"));
-
-        if (actor == null) {
-            Actor newActor = new Actor();
-
-            newActor.setIdentity((String) mA.get("identite"));
-
-            newActor.setUrl((String) mA.get("url"));
-            newActor.setImdbId((String) mA.get("id"));
-
-            JSONObject actorBirth = (JSONObject) mA.get("naissance");
-
-            if (actorBirth != null && !actorBirth.equals("")) {
-
-
-                if (!actorBirth.get("lieuNaissance").equals("") && actorBirth.get("lieuNaissance") != null) {
-                    newActor.setBirthplace((String) actorBirth.get("lieuNaissance"));
-
-                }
-
-                if (!actorBirth.get("dateNaissance").equals("") && actorBirth.get("dateNaissance") != null && dateisValid((String) actorBirth.get("dateNaissance"))) {
-
-                    String stringBirthDate = (String) actorBirth.get("dateNaissance");
-
-                    String[] arrayBirthDate = stringBirthDate.split("-");
-
-                    LocalDate actorBirthDate = LocalDate.of(Integer.parseInt(arrayBirthDate[0]), Integer.parseInt(arrayBirthDate[1]), Integer.parseInt(arrayBirthDate[2]));
-                    newActor.setBirthdate(actorBirthDate);
-                }
-            }
-
-            actorManager.create(newActor);
-
-
-            actor = actorManager.getElementByIdentity((String) mA.get("identite"));
-
-        }
-
-        return actor;
-    }*/
-
+    
     public static boolean dateisValid(String dateStr) {
         DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         try {

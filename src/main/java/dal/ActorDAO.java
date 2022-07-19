@@ -2,10 +2,12 @@ package dal;
 
 import bll.ConnectionManager;
 import bo.Actor;
+import bo.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ActorDAO implements DAO<Actor> {
 
@@ -41,6 +43,13 @@ public class ActorDAO implements DAO<Actor> {
         TypedQuery<Actor> query = em.createQuery("select r from Actor r where r.imdbId = :imdbId", Actor.class);
         query.setParameter("imdbId", id);
         return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
+    }
+
+    public List<Actor> selectCastByMovie(String movie) {
+        TypedQuery<Actor> query = em.createQuery("SELECT a FROM Actor a JOIN a.movies m where m.name = :movie", Actor.class);
+        query.setParameter("movie", movie);
+        List<Actor> cast = query.getResultList();
+        return cast;
     }
 
 }
