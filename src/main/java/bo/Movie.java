@@ -1,6 +1,7 @@
 package bo;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,33 +31,17 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String name, String url, String plot, String imdbId, String language, String releaseYear) {
-        this.name = name;
-        this.url = url;
-        this.plot = plot;
-        this.imdbId = imdbId;
-        this.language = language;
-        this.releaseYear = releaseYear;
-    }
-
-    @ManyToMany( cascade = CascadeType.MERGE)
-    @JoinTable(name = "Movie_actors",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actors_id"))
-    private Set<Actor> actors = new LinkedHashSet<>();
-
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(name = "Movie_directors",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "directors_id"))
     private Set<Director> directors = new LinkedHashSet<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(name = "Movie_genres",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genres_id"))
     private Set<Genre> genres = new LinkedHashSet<>();
-
 
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -66,6 +51,36 @@ public class Movie {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "pays_id")
     private Country country;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "Movie_actors",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actors_id"))
+    private Set<Actor> actors = new LinkedHashSet<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "Movie_main_actors",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actors_id"))
+    private Set<Actor> mainActors = new LinkedHashSet<>();
+
+    public Set<Actor> getMainActors() {
+        return mainActors;
+    }
+
+    public void setMainActors(Set<Actor> mainActors) {
+        this.mainActors = mainActors;
+    }
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
+
+
+    public void setActors(Set<Actor> actors) {
+        this.actors = actors;
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -161,15 +176,6 @@ public class Movie {
 
     public void setDirectors(Set<Director> directors) {
         this.directors = directors;
-    }
-
-
-    public Set<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(Set<Actor> actors) {
-        this.actors = actors;
     }
 
     public Long getId() {

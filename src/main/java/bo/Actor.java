@@ -6,16 +6,22 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+
 public class Actor extends Person{
 
     @Column(name="imdb_id")
     private String imdbId;
 
+    /*Birthdate of actor*/
     @Column(name="birthdate")
     private LocalDate birthdate;
 
+    /*Birthplace of actor*/
     @Column(name="birthplace")
     private String birthplace;
+
+    @ManyToMany(mappedBy = "actors", cascade = CascadeType.MERGE)
+    private Set<Movie> movies = new LinkedHashSet<>();
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "Actor_roles",
@@ -23,22 +29,23 @@ public class Actor extends Person{
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Role> roles = new LinkedHashSet<>();
 
-    public Actor() {
-    }
-
-    public Actor(String identity, String url, String imdbId, LocalDate birthdate, String birthplace) {
-        super(identity, url);
-        this.imdbId = imdbId;
-        this.birthdate = birthdate;
-        this.birthplace = birthplace;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public Actor() {
     }
 
     public String getImdbId() {

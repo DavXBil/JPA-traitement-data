@@ -10,6 +10,7 @@ public abstract class Person {
     @Column(name = "id", nullable = false)
     private Long id;
 
+
     private String identity;
     private String url;
 

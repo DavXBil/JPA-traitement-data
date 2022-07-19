@@ -20,10 +20,14 @@ public class Genre {
         this.id = id;
     }
 
-    public Genre() {
+    public String getName() {
+        return name;
     }
 
-    public Genre(String name) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public Genre() {
     }
 }

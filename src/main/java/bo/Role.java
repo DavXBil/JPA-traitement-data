@@ -2,6 +2,8 @@ package bo;
 
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 public class Role {
@@ -17,6 +19,17 @@ public class Role {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
+    @ManyToMany(mappedBy = "roles")
+    private Set<Actor> actors = new LinkedHashSet<>();
+
+    public Set<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(Set<Actor> actors) {
+        this.actors = actors;
+    }
+
     public Movie getMovie() {
         return movie;
     }
@@ -26,10 +39,6 @@ public class Role {
     }
 
     public Role() {
-    }
-
-    public Role(String characterName) {
-        this.setCharacterName(characterName);
     }
 
     public Long getId() {

@@ -26,14 +26,20 @@ public class ActorDAO implements DAO<Actor> {
 
     }
 
-    @Override
-    public Actor selectById(long id) throws DALException {
-        return null;
+    public void update(Actor object) throws DALException{
+        em.getTransaction().begin();
+        em.merge(object);
+        em.getTransaction().commit();
     }
 
     public Actor selectByIdentity(String identity) {
         TypedQuery<Actor> query = em.createQuery("select r from Actor r where r.identity = :identity", Actor.class);
         query.setParameter("identity", identity);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
+    }
+    public Actor selectByImdbId(String id) {
+        TypedQuery<Actor> query = em.createQuery("select r from Actor r where r.imdbId = :imdbId", Actor.class);
+        query.setParameter("imdbId", id);
         return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 

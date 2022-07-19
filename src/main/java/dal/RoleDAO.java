@@ -23,12 +23,7 @@ public class RoleDAO implements DAO<Role>{
         }
     }
 
-    @Override
-    public Role selectById(long id) throws DALException {
-        return null;
-    }
-
-    public Role selectById(String characterName) throws DALException {
+    public Role selectByName(String characterName) throws DALException {
 
         TypedQuery<Role> query = em.createQuery("select r from Role r where r.characterName = :name", Role.class);
         query.setParameter("name", characterName);

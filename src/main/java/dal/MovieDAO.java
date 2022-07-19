@@ -25,10 +25,6 @@ public class MovieDAO implements DAO<Movie>{
         }
     }
 
-    @Override
-    public Movie selectById(long id) throws DALException {
-        return null;
-    }
 
     public Movie selectByImdbId(String imdbId) {
         TypedQuery<Movie> query = em.createQuery("select m from Movie m where m.imdbId = :imdbId", Movie.class);

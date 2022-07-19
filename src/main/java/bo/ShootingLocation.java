@@ -13,10 +13,10 @@ public class ShootingLocation {
     private String city;
 
     @Column(name = "state_department")
-    private Long stateDepartment;
+    private String stateDepartment;
 
     @Column(name = "country")
-    private Long country;
+    private String country;
 
     public Long getId() {
         return id;
@@ -26,12 +26,30 @@ public class ShootingLocation {
         this.id = id;
     }
 
-    public ShootingLocation() {
+    public String getCity() {
+        return city;
     }
 
-    public ShootingLocation(String city, Long stateDepartment, Long country) {
+    public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getStateDepartment() {
+        return stateDepartment;
+    }
+
+    public void setStateDepartment(String stateDepartment) {
         this.stateDepartment = stateDepartment;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
         this.country = country;
+    }
+
+    public ShootingLocation() {
     }
 }

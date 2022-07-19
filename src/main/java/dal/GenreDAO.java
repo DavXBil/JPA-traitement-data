@@ -1,10 +1,13 @@
 package dal;
 
 import bll.ConnectionManager;
+import bo.Actor;
 import bo.Genre;
+import org.json.simple.JSONObject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 public class GenreDAO implements DAO<Genre>{
 
@@ -22,8 +25,10 @@ public class GenreDAO implements DAO<Genre>{
         }
     }
 
-    @Override
-    public Genre selectById(long id) throws DALException {
-        return null;
+
+    public Genre selectByName(String name) {
+        TypedQuery<Genre> query = em.createQuery("select r from Genre r where r.name = :name", Genre.class);
+        query.setParameter("name", name);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 }

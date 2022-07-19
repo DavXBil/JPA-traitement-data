@@ -1,10 +1,12 @@
 package dal;
 
 import bll.ConnectionManager;
+import bo.Country;
 import bo.ShootingLocation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 public class ShootingLocationDAO implements DAO<ShootingLocation>{
 
@@ -22,8 +24,11 @@ public class ShootingLocationDAO implements DAO<ShootingLocation>{
         }
     }
 
-    @Override
-    public ShootingLocation selectById(long id) throws DALException {
-        return null;
+    public ShootingLocation selectByProperties(String city, String country, String department) {
+        TypedQuery<ShootingLocation> query = em.createQuery("select r from ShootingLocation r where r.city = :city and r.country = :country and stateDepartment = :department ", ShootingLocation.class);
+        query.setParameter("city", city);
+        query.setParameter("country", country);
+        query.setParameter("department", department);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 }

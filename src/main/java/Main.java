@@ -1,8 +1,6 @@
-import bll.ConnectionManager;
 import bll.FileManager;
-import bll.JsonParseManager;
+import bll.JsonParseService;
 import bo.Actor;
-import dal.ActorDAO;
 import dal.DALException;
 import dal.DAO;
 import dal.DAOFactory;
@@ -14,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        JsonParseManager jsonParser = new JsonParseManager();
+        JsonParseService jsonParser = new JsonParseService();
 
         DAO<Actor> actorDAO = DAOFactory.getActorDAO();
 

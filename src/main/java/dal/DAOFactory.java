@@ -1,7 +1,5 @@
 package dal;
 
-
-
 import bo.*;
 
 public class DAOFactory {
@@ -26,9 +24,9 @@ public class DAOFactory {
 		return new GenreDAO();
 	}
 
-	public static DAO<Country> getPaysDAO()
+	public static DAO<Country> getCountryDAO()
 	{
-		return new PaysDAO();
+		return new CountryDAO();
 	}
 
 	public static DAO<Role> getRoleDAO()

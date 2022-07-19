@@ -1,12 +1,14 @@
 package dal;
 
 import bll.ConnectionManager;
+import bo.Actor;
 import bo.Country;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
-public class PaysDAO implements DAO<Country>{
+public class CountryDAO implements DAO<Country>{
 
     private final EntityManagerFactory emf = ConnectionManager.getInstance().getEmf();
     private final EntityManager em = emf.createEntityManager();
@@ -22,8 +24,9 @@ public class PaysDAO implements DAO<Country>{
         }
     }
 
-    @Override
-    public Country selectById(long id) throws DALException {
-        return null;
+    public Country selectByName(String name) {
+        TypedQuery<Country> query = em.createQuery("select r from Country r where r.name = :name", Country.class);
+        query.setParameter("name", name);
+        return query.getResultList().size() > 0 ? query.getResultList().get(0) : null;
     }
 }
