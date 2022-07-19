@@ -7,7 +7,11 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * reads a Json file and initiate the parsing of the classes in it
+ */
 public class FileManager {
+
 
     public static JSONArray readCsv(String filePath) {
         JSONParser jsonParser = new JSONParser();

@@ -46,11 +46,66 @@ public class ScannerQueries {
                     System.out.println("Entrez le titre d'un film");
                     String input = scan.nextLine();
                     List<Actor> actorsList = actorManager.getCastByFilm(input);
+                    System.out.println("Voici le casting de " + input + ":");
                     for (Actor movieActor : actorsList) {
                         System.out.println(movieActor.getIdentity());
                     }
 
                 }
+
+                case 3 -> {
+                    System.out.println("Entrez une première année");
+                    String input = scan.nextLine();
+                    System.out.println("Entrez une seconde année");
+                    String input2 = scan.nextLine();
+                    List<Movie> movieList = movieManager.getElementByYearInterval(input, input2);
+                    System.out.println("Voici les films sortis entre" + input + " et " + input2);
+                    for (Movie actorMovie : movieList) {
+                        System.out.println(actorMovie.getName());
+                    }
+                }
+
+                case (4) -> {
+                    System.out.println("* - Veuillez indiquer le 1er acteur/actrice");
+                    String input = scan.nextLine();
+                    System.out.println("* - Veuillez indiquer le 2ème acteur/actrice");
+                    String input2 = scan.nextLine();
+                    List<Movie> commonActorsMovies = movieManager.getElementByCommonActors(input, input2);
+
+                    System.out.println("Voici les films commun entre " + input + " et " + input2 + " :");
+                    for (Movie movie : commonActorsMovies) {
+                        System.out.println(movie.getName());
+                    }
+                }
+
+                case (5) -> {
+                    System.out.println("* - Veuillez indiquer le 1er film");
+                    String input = scan.nextLine();
+                    System.out.println("* - Veuillez indiquer le 2ème film");
+                    String input2 = scan.nextLine();
+                    List<Actor> acteurCommunEntre1Film = actorManager.geElementByCommonMovie(input, input2);
+
+                    System.out.println("Voici les acteurs commun entre " + input + " et " + input2 + " :");
+                    for (Actor acteur : acteurCommunEntre1Film) {
+                        System.out.println(acteur.getIdentity());
+                    }
+                }
+
+                case (6) -> {
+                    System.out.println("* - Veuillez indiquer la 1ère année");
+                    String input = scan.nextLine();
+                    System.out.println("* - Veuillez indiquer la 2ème année");
+                    String input2 = scan.nextLine();
+                    System.out.println("* - Veuillez indiquer un acteur/actrice");
+                    String input3 = scan.nextLine();
+                    List<Movie> movies = movieManager.getElementByDateandActor(input3, input, input2);
+
+                    System.out.println("Voici les films qui ont " + input3 + " et qui ont été sortie entre " + input + " et " + input2 + " :");
+                    for (Movie movie : movies) {
+                        System.out.println(movie.getName());
+                    }
+                }
+
                 case 7 -> {
                     isRunning = false;
                     System.out.println("Au revoir");

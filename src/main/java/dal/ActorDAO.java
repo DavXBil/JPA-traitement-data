@@ -52,4 +52,18 @@ public class ActorDAO implements DAO<Actor> {
         return cast;
     }
 
+    public List<Actor> selectByCommonMovie(String movie1, String movie2) {
+        TypedQuery<Actor> query = em.createQuery("SELECT DISTINCT a FROM Actor a JOIN a.movies f WHERE " +
+                "f.name = :movie1 AND " +
+                "a.id IN (SELECT a.id FROM " +
+                "Actor a JOIN a.movies f WHERE " +
+                "f.name = :movie2)", Actor.class);
+        query.setParameter("movie1", movie1);
+        query.setParameter("movie2", movie2);
+        List<Actor> actors = query.getResultList();
+        return actors;
+    }
+
+
+
 }

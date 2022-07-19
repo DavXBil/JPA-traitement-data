@@ -23,6 +23,12 @@ public class JsonParseService {
     static CountryManager countryManager = CountryManager.getInstance();
     static ShootingLocationManager shootingLocationManager = ShootingLocationManager.getInstance();
 
+    /**
+     * Parses JSON into Actor Object then push in database
+     * @param a JSONObject to read
+     * @return Actor Object
+     * @throws DALException
+     */
     public static Actor parseActorObject(JSONObject a) throws DALException {
 
         JSONArray actorRoles = (JSONArray) a.get("roles");
@@ -107,6 +113,12 @@ public class JsonParseService {
         return actor;
     }
 
+    /**
+     * Parses JSON into Role Object then push in database
+     * @param r Json Object
+     * @return Role
+     * @throws DALException
+     */
     public static Role parseRolesArray(JSONObject r) throws DALException {
 
         Role role =  roleManager.getElementByName((String) r.get("characterName"));
@@ -132,6 +144,12 @@ public class JsonParseService {
         return role;
     }
 
+    /**
+     * Parses JSON into Movie Object then push in database
+     * @param m JSONObject
+     * @return Movie Object
+     * @throws DALException
+     */
     public static Movie parseMovieObject(JSONObject m) throws DALException {
 
         Movie movie = movieManager.getElementByImdbId((String) m.get("id"));
@@ -200,6 +218,7 @@ public class JsonParseService {
                 genres.add( parseGenreObject((String) movGenre));
             }
 
+
             newMovie.setGenres(genres);
 
             movieManager.create(newMovie);
@@ -211,6 +230,12 @@ public class JsonParseService {
         return movie;
     }
 
+    /**
+     * Parses JSON into Genre Object then push in database
+     * @param movGenre Genre name found in Json Movie Object
+     * @return Genre Object
+     * @throws DALException
+     */
     private static Genre parseGenreObject(String movGenre) throws DALException {
         Genre genre = genreManager.getElementByName(movGenre);
 
@@ -227,6 +252,12 @@ public class JsonParseService {
         return genre;
     }
 
+    /**
+     * Parses JSON into Director Object then push in database
+     * @param a JsonObject
+     * @return Director Object
+     * @throws DALException
+     */
     public static Director parseDirectorObject(JSONObject a) throws DALException {
 
         Director director = directorManager.getElementByIdentity((String) a.get("identite"));
@@ -246,6 +277,12 @@ public class JsonParseService {
         return director;
     }
 
+    /**
+     * Parses JSON into Country Object then push in database
+     * @param c Json Object
+     * @return Country Object
+     * @throws DALException
+     */
     public static Country parseCountryObject(JSONObject c) throws DALException {
 
         Country country = countryManager.getElementByName((String) c.get("nom"));
@@ -266,6 +303,12 @@ public class JsonParseService {
         return country;
     }
 
+    /**
+     * Parses JSON into ShootingLocation Object then push in database
+     * @param s Json Object
+     * @return ShootingLocation Object
+     * @throws DALException
+     */
     public static ShootingLocation parseShootingLocationObject(JSONObject s) throws DALException {
 
         ShootingLocation shootLoc = shootingLocationManager.getElementByProperties((String) s.get("ville"), (String) s.get("pays"), (String) s.get("etatDept"));
@@ -286,7 +329,12 @@ public class JsonParseService {
 
         return shootLoc;
     }
-    
+
+    /**
+     * Check the validity of a JSon date in String type
+     * @param dateStr the date in String type
+     * @return boolean true if the date is valid, false if not
+     */
     public static boolean dateisValid(String dateStr) {
         DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         try {

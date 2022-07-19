@@ -5,7 +5,9 @@ import bo.Country;
 import dal.CountryDAO;
 import dal.DALException;
 import dal.DAOFactory;
-
+/**
+ * Manage queries related to the Country Class
+ */
 public class CountryManager {
 
     private static volatile CountryManager instance = null;
@@ -16,6 +18,10 @@ public class CountryManager {
 
     }
 
+    /**
+     *
+     * @return instance of CountryManager
+     */
     public static final CountryManager getInstance() {
         if(CountryManager.instance == null) {
             synchronized (CountryManager.class) {
@@ -28,10 +34,19 @@ public class CountryManager {
     }
 
 
+    /**
+     *
+     * @param a Country object
+     * @throws DALException
+     */
     public void create(Country a) throws DALException {
         countryDAO.create(a);
     }
 
+    /**
+     *
+     * @param name Country name
+     */
     public Country getElementByName(String name) {
         return countryDAO.selectByName(name);
     }

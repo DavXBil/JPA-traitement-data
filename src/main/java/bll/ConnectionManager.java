@@ -3,6 +3,7 @@ package bll;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+
 public class ConnectionManager {
 
     private static ConnectionManager instance;

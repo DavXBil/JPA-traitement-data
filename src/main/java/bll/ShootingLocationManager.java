@@ -6,6 +6,9 @@ import dal.DALException;
 import dal.DAOFactory;
 import dal.ShootingLocationDAO;
 
+/**
+ * Manage queries related to the ShootingLocation Class
+ */
 public class ShootingLocationManager {
 
     private static volatile ShootingLocationManager instance = null;
@@ -28,10 +31,22 @@ public class ShootingLocationManager {
     }
 
 
+    /**
+     *
+     * @param a ShootingLocation Object
+     * @throws DALException
+     */
     public void create(ShootingLocation a) throws DALException {
         shootingLocationDAO.create(a);
     }
 
+    /**
+     *
+     * @param city
+     * @param country
+     * @param department
+     * @return ShootingLocation Object
+     */
     public ShootingLocation getElementByProperties(String city, String country, String department) {
         return shootingLocationDAO.selectByProperties(city, country, department);
     }

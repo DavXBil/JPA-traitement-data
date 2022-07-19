@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Actor extends Person{
 
+
     @Column(name="imdb_id")
     private String imdbId;
 

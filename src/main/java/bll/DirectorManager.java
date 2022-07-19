@@ -5,7 +5,9 @@ import bo.Director;
 import dal.DALException;
 import dal.DAOFactory;
 import dal.DirectorDAO;
-
+/**
+ * Manage queries related to the Director Class
+ */
 public class DirectorManager {
 
     private static volatile DirectorManager instance = null;
@@ -27,10 +29,20 @@ public class DirectorManager {
         return DirectorManager.instance;
     }
 
+    /**
+     *
+     * @param a Director Object
+     * @throws DALException
+     */
     public void create(Director a) throws DALException {
         directorDAO.create(a);
     }
 
+    /**
+     *
+     * @param id Director identity
+     * @return
+     */
     public Director getElementByIdentity(String id) {
         return directorDAO.selectByIdentity(id);
     }
